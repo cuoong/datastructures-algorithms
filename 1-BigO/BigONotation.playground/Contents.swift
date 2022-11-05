@@ -25,7 +25,8 @@ func findNemo(_ arr: [String]) {
 
 //let nemo = ["nemo"]
 let nemo = Array<String>(repeating: "", count: 100000)
-findNemo(nemo)
+print(findNemo(nemo))
+
 
 
 
