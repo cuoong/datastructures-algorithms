@@ -23,9 +23,39 @@ import UIKit
  
  */
 func solution(_ S : String) -> String {
-    // do your work here
-    return ""
+    
+    var tempString = S.digits
+    
+    var result = ""
+    var count = 1
+    for ch in tempString {
+        result.append(ch)
+        if count % 3 == 0 {
+            result.append("-")
+        }
+        count += 1
+    }
+    
+    // Check edge case
+    // remove last dash
+    if result.last == "-" { result.removeLast() }
+    
+    // Check string end with -x, replace -x -> -xx
+    // convert string to array
+    var chars = Array(result)
+    let lastDashPointer = chars.count - 2
+    if chars[lastDashPointer] == "-" {
+        chars[lastDashPointer] = chars[lastDashPointer-1]
+        chars[lastDashPointer-1] = "-"
+    }
+    
+    return String(chars)
 }
+
+extension RangeReplaceableCollection where Self:StringProtocol {
+    var digits: Self { filter(\.isWholeNumber)}
+}
+
 
 solution("123456789")           // 123-456-789
 solution("555372654")           // 555-372-654
